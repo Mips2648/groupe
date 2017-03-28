@@ -1,0 +1,5 @@
+﻿[horizontal]
+
+20.03.2017:: Correction pour le mode personnalisé.Passage en stable.Possibilité d'inverser les commandes
+
+19.03.2017:: Verfügbarkeit des Plugins auf dem Markt in der Beta Version

@@ -1,0 +1,32 @@
+﻿
+
+Sie müssen das Plugin von dem Markt herunterladen. 
+
+image::../images/groupe_icon.png[align="center"]
+
+
+Nachdem es aktiviert wurde, gehen Sie dann auf Plugins/Monitoring/Gruppe
+
+Erstellen Sie ein neues Gerät, indem Sie auf + klicken
+
+Dann müssen Sie das Gerät aktivieren und konfigurieren.
+
+image::../images/configuration.png[align="center"]
+
+- Befehl hinzufügen : Erlaubt, die Zustandsbefehle auszuwählen
+
+-Symbol AN : Symbol, das angezeigt wird, wenn mindestens 1 Befehl aktiv ist
+
+-Symbol AUS : Symbol, das angezeigt wird, wenn alle Geräte inaktiv sind
+
+Was es geben kann : 
+
+image::../images/light.png[align="center"]
+
+image::../images/volets.png[align="center"]
+
+image::../images/alerte.png[align="center"]
+
+Das Widget wird aktualisiert, sobald es eine Zustandsänderung gibt.
+
+Man kann es sich also vorstellen, es für irgendeinen Befehl zu benutzen.

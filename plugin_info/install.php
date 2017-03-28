@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 
 function groupe_update() {
-	$timeUpdate = '1490132632 ';
+	$timeUpdate = '1490710140';
 	$data = update::byLogicalId('groupe');
 	$date = DateTime::createFromFormat('Y-m-d H:i:s', $data->getLocalVersion());
 	if ($date->format('U') < $timeUpdate) {

@@ -91,11 +91,10 @@ class groupe extends eqLogic {
 			foreach ($etats as $etat) {
 					$cmd = cmd::byId(str_replace('#', '', $etat));
 					if (!is_object($cmd)) {
-						throw new Exception(__('Commande déclencheur inconnue : ' . $trigger['cmd'], __FILE__));
+						throw new Exception(__('Commande déclencheur inconnue : ' . $etat, __FILE__));
 					}
 					$listener->addEvent($etat);
 			}
-			
 			$listener->save();
 			$this->get_info();
 			$this->refreshWidget();			

@@ -25,7 +25,7 @@ function groupe_update() {
 	$data = update::byLogicalId('groupe');
 	$date = DateTime::createFromFormat('Y-m-d H:i:s', $data->getLocalVersion());
 	if ($date->format('U') < $timeUpdate) {
-		log::add('groupe', 'error', '!!!Attention, il faut supprimer et recréer vos équipements pour avoir accés à toutes les commandes!!!');
+		log::add('groupe', 'error', '!!!Attention, Si vous avez la première version - avant le 23.03.2017- il faut recréer vos équipements !!!');
 	}
     
 }

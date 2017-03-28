@@ -77,11 +77,7 @@ class groupe extends eqLogic {
 		$status->setType('info');
 		$status->setSubType('binary');
 		$status->save(); 	
-		
-
 						
-				
-		$this->get_info();			
 		if ($this->getIsEnable() == 1) {
 			$listener = listener::byClassAndFunction('groupe', 'pull', array('groupe_id' => intval($this->getId())));
 			if (!is_object($listener)) {
@@ -91,16 +87,15 @@ class groupe extends eqLogic {
 			$listener->setFunction('pull');
 			$listener->setOption(array('groupe_id' => intval($this->getId())));
 			$listener->emptyEvent();
-			$triggers = $this->getCmd();
-			foreach ($triggers as $trigger) {
-					if ($trigger->getConfiguration('state') != "") {
-						$cmd = cmd::byId(str_replace('#', '', $trigger->getConfiguration('state')));
-						if (!is_object($cmd)) {
-							throw new Exception(__('Commande déclencheur inconnue: ' . $trigger->getConfiguration('state'), __FILE__));
-						}
-						$listener->addEvent($trigger->getConfiguration('state'));
+			$etats = $this->getConfiguration('etat');
+			foreach ($etats as $etat) {
+					$cmd = cmd::byId(str_replace('#', '', $etat));
+					if (!is_object($cmd)) {
+						throw new Exception(__('Commande déclencheur inconnue : ' . $trigger['cmd'], __FILE__));
 					}
+					$listener->addEvent($etat);
 			}
+			
 			$listener->save();
 			$this->get_info();
 			$this->refreshWidget();			

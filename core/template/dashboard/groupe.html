@@ -1,0 +1,54 @@
+<div class="eqLogic eqLogic-widget allowResize allowReorderCmd " style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
+    
+	<center class="widget-name"><strong><a href="#eqLink#" style="font-size : 1.1em;#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;position: relative;top:-2px;">#object_name#</span></a></strong></center>    
+    <br>
+    <div class="verticalAlign">
+    	<center>
+        	<span style="font-size : 3em;">
+    			#icon#
+            </span>
+        </center>
+    </div>
+  	<div class="verticalAlign">
+    	<center>
+    	<span class="data_#id#" style="background-color:#cmdColor# !important;border-color : transparent !important;height:32px!important" >#nb# / #nb_triggers#</span> 
+        </center> 
+
+    </div>
+    
+    
+  
+</div>
+
+<script>
+ $('.data_#id#').on('click', function() {
+	$('#md_modal').dialog({
+		width : 500,
+		height: 500,
+		autoOpen: false,
+		modal: true,
+		
+		title: "Informations"
+	});
+	
+     $('#md_modal').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
+     $('#md_modal').dialog('open');	
+	 
+	 
+ });
+ $('#md_modal').on('dialogclose', function(event) {
+      window.location.reload();	
+ }); 
+</script>
+
+<style>
+.data {
+	font-size : 1em;
+	font-style:bold;
+	border:1px solid #333;
+	border-radius:3px;
+	padding:4px;
+}
+
+
+</style>

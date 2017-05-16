@@ -1,0 +1,12 @@
+== Plugin-Gruppe
+
+=== Präsentation
+Dieses Plugin erlaubt es, den Zustand einer Befehlsgruppe abzufragen und zeigt das Widget in verschiedenen Ansichten mit anpassbaren Symbole an
+
+'''
+=== Installation/Konfiguration
+include::configuration.asciidoc[]
+
+'''
+=== Changelog
+include::changelog.asciidoc[]

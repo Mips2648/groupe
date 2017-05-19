@@ -24,8 +24,6 @@ class groupe extends eqLogic {
 	public static $_widgetPossibility = array('custom' => true);
 
     public static function pull($_option) {
-		log::add('groupe','debug','pull: ' .  print_r($_option,true));
-		
 		$groupe = groupe::byId($_option['groupe_id']);
 		if (is_object($groupe) && $groupe->getIsEnable() == 1) {
 			$groupe->execute($_option['event_id'], $_option['value']);
@@ -39,8 +37,6 @@ class groupe extends eqLogic {
     public static function launchCmd($id) {
         $cmd = cmd::byId($id);
 		$cmd->execCmd();
-		$groupe = groupe::byId($cmd->getEqLogic_id());
-		$groupe->refreshWidget();
     }
 		
     public function postUpdate() {
@@ -221,7 +217,6 @@ class groupe extends eqLogic {
 				$replace['#nb#'] = '0';
 				$replace['#nb_triggers#'] = $nb_triggers;				
 			}
-			$replace['#script#'] = '<script> reload_data()</script>';
 			
 			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'groupe', 'groupe')));	
 		} catch(Exception $e) {

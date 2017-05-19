@@ -164,12 +164,7 @@ foreach ($eqLogics as $eqLogic) {
            
   
             <br/>
-            <div class="form-group">
-                <label class="col-sm-1 control-label">{{Autoriser les actions}}</label>
-                <div class="col-sm-1">
-                    <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="AutAction"/>
-                </div>
-            </div>
+
 
 		</form>
 		</div>

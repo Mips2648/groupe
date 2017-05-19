@@ -40,9 +40,7 @@ $("body").delegate(".listCmdActionOn", 'click', function() {
     });
 });
 
-$("body").undelegate(".eqLogicAttr[data-l1key=configuration][data-l2key=AutAction]", 'change ').delegate('.eqLogicAttr[data-l1key=configuration][data-l2key=AutAction]','change ', function () {
 
-});
 
 
 $('.cmdAction[data-action=addCmd]').on('click', function () {

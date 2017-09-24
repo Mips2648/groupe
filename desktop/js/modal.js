@@ -19,8 +19,6 @@ function readTable(infoGroupe) {
 			}			
 			
 		}
-		
-		
 	}
 	$("#activeTable").html(html1);
 	$("#inactiveTable").html(html);

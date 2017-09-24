@@ -4,7 +4,7 @@
     <br>
     <div class="verticalAlign">
     	<center>
-        	<span onclick="infoCmd();" style="font-size : 3em;">
+        	<span id="etat"  style="font-size : 3em;">
     			#icon#
             </span>
         </center>
@@ -20,19 +20,20 @@
 
 
 <script>
-function infoCmd() {
-	$('#md_modal').dialog({
-		width : 500,
-		height: 500,
-		autoOpen: false,
-		modal: true,
-		
-		title: 'informations'
-	});
 
-	$('#md_modal').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
-	$('#md_modal').dialog('open');	
-}
+// $('#etat').on('click', function() {
+//	$('#md_modal').dialog({
+//		width : 500,
+//		height: 500,
+//		autoOpen: false,
+//		modal: true,
+//		
+//		title: 'informations'
+//	});
+//
+//	$('#md_modal').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
+//	$('#md_modal').dialog('open');	
+//});
 	 
 </script>	
 

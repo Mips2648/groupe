@@ -123,12 +123,12 @@ foreach ($eqLogics as $eqLogic) {
          </div>
         <br/>    
         </div> 
-        <div class="form-group">
+<!--        <div class="form-group">
              <label class="col-md-2 control-label">{{Activer les actions}}</label>
            <div class="col-md-2">
                 <input type="checkbox" class="eqLogicAttr checkbox-inline" data-l1key="configuration"  data-l2key="activAction"  checked/>
             </div>
-        </div>        
+        </div>  -->      
                
         <legend >{{Equipements }}</legend>
 	
@@ -137,8 +137,8 @@ foreach ($eqLogics as $eqLogic) {
                         <tr>
                             <th style="width: 10%;">{{Nom}}</th>
                             <th  class="etat" >{{Commande Etat}}</th>
-                            <th class="action" >{{Commande ON}}</th>
-                            <th class="action" >{{Commande OFF}}</th>
+<!--                            <th class="action" >{{Commande ON}}</th>
+                            <th class="action" >{{Commande OFF}}</th>-->
                             <th style="width: 5%;">{{Inverser}}</th>
                             <th style="width: 5%;">{{Effacer}}</th>
                         </tr>

@@ -17,7 +17,7 @@ Ensuite le configurer
 
 image::../images/groupe5.png[align="center"]
 
--Ajouter un équipement: Permet de sélectionner les commandes d'état
+-Ajouter un équipement: Permet de sélectionner un équipement avec les commandes d'état et les commandes actions en option si "activer les actions" est coché
 
 -Icone ON : Icône qui apparaîtra quand au moins 1 commande sera active
 
@@ -47,4 +47,8 @@ image::../images/alerte.png[align="center"]
 
 Le widget se met à jour dés qu'il y a un changement d'état.
 
-On peut donc imaginer l'utiliser pour n'importe quelle commande.
+Un clic sur l'icône permet d'ouvrir une fenêtre et d'interagir
+
+image::../images/groupe8.png[align="center"]
+
+

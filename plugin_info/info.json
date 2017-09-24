@@ -4,6 +4,6 @@
 	"licence" : "AGPL",
 	"description": "Plugin permettant la création d'un widget avec l'état d'un groupe",
 	"author" : "zyg0m4t1k",
-	"require" : "2.4",
+	"require" : "3.0",
 	"category" : "monitoring"
 }

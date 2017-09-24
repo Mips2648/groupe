@@ -116,8 +116,20 @@ foreach ($eqLogics as $eqLogic) {
             
 
          <br />
-         <a  class="btn btn-success btn-sm cmdAction btAdd_table_cmd" data-action="addCmd"><i class="fa fa-plus-circle"></i> {{Ajouter un équipement}}</a>
-        <br/>            
+         <div class="form-group">
+         <label class="col-md-2 control-label">{{Ajouter un équipement}}</label>
+          <div class="col-md-2">
+          <a  class="btn btn-success btn-sm cmdAction btAdd_table_cmd " data-action="addCmd"><i class="fa fa-plus-circle"></i></a>
+         </div>
+        <br/>    
+        </div> 
+        <div class="form-group">
+             <label class="col-md-2 control-label">{{Activer les actions}}</label>
+           <div class="col-md-2">
+                <input type="checkbox" class="eqLogicAttr checkbox-inline" data-l1key="configuration"  data-l2key="activAction"  checked/>
+            </div>
+        </div>        
+               
         <legend >{{Equipements }}</legend>
 	
                 <table id="table_cmd" class="table table-bordered table-condensed ui-sortable table_cmd">

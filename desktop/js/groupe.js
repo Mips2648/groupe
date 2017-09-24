@@ -50,6 +50,9 @@ $('.cmdAction[data-action=addCmd]').on('click', function () {
 });
 
 
+
+
+
  $('body').undelegate('.icone .iconeOn[data-l1key=chooseIcon]', 'click').delegate('.icone .iconeOn[data-l1key=chooseIcon]', 'click', function () {
     var mode = $(this).closest('.icone');
     chooseIcon(function (_icon) {
@@ -89,16 +92,31 @@ $('.cmdAction[data-action=addCmd]').on('click', function () {
 		 
 		
     });
-	
+
   	return _eqLogic;
  }
  
+$('.eqLogicAttr[data-l1key=configuration][data-l2key=activAction]').change(function () {
+	 if(this.checked) {
+		 $('.action').show();		 
+		 
+	 } else {
+		$('.action').hide();
+	 }
+});		
+ 
  function printEqLogic(_eqLogic) {
-
+		$('.action').hide();
+		if (_eqLogic.configuration.activAction == 1) {
+			$('.action').show();
+		} else {
+			$('.action').hide();
+		}
  }
  
 
 function addCmdToTable(_cmd) {
+	
     if (!isset(_cmd)) {
         var _cmd = {configuration: {}};
     }
@@ -128,6 +146,8 @@ function addCmdToTable(_cmd) {
 		if (!isset(_cmd.subType)) {
 			_cmd.subType = "";
 		}
+			
+		
 		var tr = '<tr class="cmd ' + _cmd.type + '" data-cmd_id="' + init(_cmd.id) + '">';
 		tr += '<td>';
 		tr += '<input class="cmdAttr form-control input-sm" data-l1key="id" style="display : none;">';
@@ -137,10 +157,10 @@ function addCmdToTable(_cmd) {
 		tr += '</td><td class="trigger">';
 		tr += ' <input class="cmdAttr form-control input-sm"  data-type="' + _cmd.type + '" data-l1key="configuration" data-l2key="state"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += ' <a class="btn btn-default btn-sm cursor listCmdInfo" data-type="' + _cmd.type + '"  style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';		
-		tr += '</td><td class="action">';
+		tr += '</td><td class="action" >';
 		tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="ON"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOn" data-type="' + _cmd.type + '" data-input="ON" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
-		tr += '</td><td class="action" >';
+		tr += '</td><td class="action">';
 		tr += ' <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="OFF"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOff" data-type="' + _cmd.type + '" data-input="OFF" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
 		tr += '</td><td>';
@@ -155,6 +175,16 @@ function addCmdToTable(_cmd) {
 			$('#table_cmd tbody tr:last .cmdAttr[data-l1key=type]').value(init(_cmd.type));
 		}
 	}
+
+		console.log(_cmd.eqLogic_id);
+
+		
+//		if (eqLogic.configuration.activAction == 1) {
+//			$('.action').show();
+//		} else {
+//			$('.action').hide();
+//		}	
+//			
 }
 
 

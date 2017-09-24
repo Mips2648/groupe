@@ -4,42 +4,37 @@
     <br>
     <div class="verticalAlign">
     	<center>
-        	<span style="font-size : 3em;">
+        	<span onclick="infoCmd();" style="font-size : 3em;">
     			#icon#
             </span>
         </center>
     </div>
   	<div class="verticalAlign">
     	<center>
-    	<span class="data_#id#" style="background-color:#cmdColor# !important;border-color : transparent !important;height:32px!important" >#nb# / #nb_triggers#</span> 
+    	<span  style="background-color:#cmdColor# !important;border-color : transparent !important;height:32px!important" >#nb# / #nb_triggers#</span> 
         </center> 
 
     </div>
-    
-    
   
 </div>
 
+
 <script>
- $('.data_#id#').on('click', function() {
+function infoCmd() {
 	$('#md_modal').dialog({
 		width : 500,
 		height: 500,
 		autoOpen: false,
 		modal: true,
 		
-		title: "Informations"
+		title: 'informations'
 	});
-	
-     $('#md_modal').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
-     $('#md_modal').dialog('open');	
+
+	$('#md_modal').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
+	$('#md_modal').dialog('open');	
+}
 	 
-	 
- });
- $('#md_modal').on('dialogclose', function(event) {
-      window.location.reload();	
- }); 
-</script>
+</script>	
 
 <style>
 .data {
@@ -49,6 +44,4 @@
 	border-radius:3px;
 	padding:4px;
 }
-
-
 </style>

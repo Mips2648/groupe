@@ -33,12 +33,7 @@ class groupe extends eqLogic {
     public function launch($_trigger_id, $_value) {
         return true;
     }
-	
-    public static function launchCmd($id) {
-        $cmd = cmd::byId($id);
-		$cmd->execCmd();
-    }
-		
+
     public function postUpdate() {
 		$statusOn = $this->getCmd(null, 'statuson');
 		if (!is_object($statusOn)) {
@@ -108,7 +103,6 @@ class groupe extends eqLogic {
 			}
 			$listener->save();
 			$this->get_info();
-			$this->refreshWidget();			
 		} else {
 			$listener = listener::byClassAndFunction('groupe', 'pull', array('groupe_id' => intval($this->getId())));
 			if (is_object($listener)) {
@@ -128,7 +122,10 @@ class groupe extends eqLogic {
 		$changed = false;
 		$changed = $this->checkAndUpdateCmd('statuson', $i) || $changed;
 		$changed = $this->checkAndUpdateCmd('statusoff', $j) || $changed;
-		$changed = $this->checkAndUpdateCmd('status', $etat) || $changed;		
+		$changed = $this->checkAndUpdateCmd('status', $etat) || $changed;
+		if ($changed) {
+			$this->refreshWidget();
+		}			
 	}
 	
 	public function get_info($_id=false){
@@ -181,14 +178,12 @@ class groupe extends eqLogic {
 		$cmds = $this->getCmd();
 		foreach ($cmds as $cmd) {
 			if ($cmd->getConfiguration('state') == ('#' .$_trigger_id . '#')) {
-				$changed = $this->checkAndUpdateCmd('last', $cmd->getName()) || $changed;
-				goto endoffunction;
+				$this->checkAndUpdateCmd('last', $cmd->getName());
+				break;
 			}
 		}
-		endoffunction:
-		$this->get_info();
-		$this->refreshWidget();			
-		
+
+		$this->get_info();	
     }
 	
 	public function dontRemoveCmd() {
@@ -217,7 +212,6 @@ class groupe extends eqLogic {
 				$replace['#nb#'] = '0';
 				$replace['#nb_triggers#'] = $nb_triggers;				
 			}
-			
 			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'groupe', 'groupe')));	
 		} catch(Exception $e) {
 			log::add('groupe', 'error', 'error :' . $e);

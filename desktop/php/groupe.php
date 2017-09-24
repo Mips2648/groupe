@@ -137,8 +137,8 @@ foreach ($eqLogics as $eqLogic) {
                         <tr>
                             <th style="width: 10%;">{{Nom}}</th>
                             <th  class="etat" >{{Commande Etat}}</th>
-<!--                            <th class="action" >{{Commande ON}}</th>
-                            <th class="action" >{{Commande OFF}}</th>-->
+                           <th class="action" >{{Commande ON}}</th>
+                            <th class="action" >{{Commande OFF}}</th>
                             <th style="width: 5%;">{{Inverser}}</th>
                             <th style="width: 5%;">{{Effacer}}</th>
                         </tr>

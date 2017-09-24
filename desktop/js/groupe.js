@@ -105,15 +105,6 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=activAction]').change(funct
 	 }
 });		
  
- function printEqLogic(_eqLogic) {
-		$('.action').hide();
-		if (_eqLogic.configuration.activAction == 1) {
-			$('.action').show();
-		} else {
-			$('.action').hide();
-		}
- }
- 
 
 function addCmdToTable(_cmd) {
 	
@@ -176,14 +167,33 @@ function addCmdToTable(_cmd) {
 		}
 	}
 
-		console.log(_cmd.eqLogic_id);
+		$.ajax({
+			type: 'POST',
+			url: 'plugins/groupe/core/ajax/groupe.ajax.php',
+			data: {
+				action: 'getStatus',
+				id: _cmd.eqLogic_id
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				if (data.result == 1) {
+					$('.action').show();
+				} else {
+					$('.action').hide();
+				}					
+ 				
 
+			}
+	   });	
 		
-//		if (eqLogic.configuration.activAction == 1) {
-//			$('.action').show();
-//		} else {
-//			$('.action').hide();
-//		}	
+
 //			
 }
 

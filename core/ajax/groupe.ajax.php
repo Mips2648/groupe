@@ -27,6 +27,12 @@ try {
         groupe::launchCmd(init('id'));
 		ajax::success();
     }
+    if (init('action') == 'getStatus') {
+        $groupe = groupe::byId(init('id'));
+		$return = $groupe->getConfiguration('activAction');
+		ajax::success($return);
+    }
+		
     throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

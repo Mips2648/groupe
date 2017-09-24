@@ -105,15 +105,6 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=activAction]').change(funct
 	 }
 });		
  
- function printEqLogic(_eqLogic) {
-		$('.action').hide();
-		if (_eqLogic.configuration.activAction == 1) {
-			$('.action').show();
-		} else {
-			$('.action').hide();
-		}
- }
- 
 
 function addCmdToTable(_cmd) {
 	
@@ -157,14 +148,14 @@ function addCmdToTable(_cmd) {
 		tr += '</td><td class="trigger">';
 		tr += ' <input class="cmdAttr form-control input-sm"  data-type="' + _cmd.type + '" data-l1key="configuration" data-l2key="state"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += ' <a class="btn btn-default btn-sm cursor listCmdInfo" data-type="' + _cmd.type + '"  style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';		
-		tr += '</td><td class="action" >';
-		tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="ON"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
+		tr += '</td>';
+		tr += '<td class="action" ><input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="ON"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOn" data-type="' + _cmd.type + '" data-input="ON" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
 		tr += '</td><td class="action">';
 		tr += ' <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="OFF"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOff" data-type="' + _cmd.type + '" data-input="OFF" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
-		tr += '</td><td>';
-		tr += '<input type="checkbox" class="tooltips cmdAttr" data-l1key="configuration" data-l2key="reverse">';
+		tr += '</td>';
+		tr += '<td><input type="checkbox" class="tooltips cmdAttr" data-l1key="configuration" data-l2key="reverse">';
 		tr += '</td><td>';
 		tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
 		tr += '</td>';
@@ -176,14 +167,33 @@ function addCmdToTable(_cmd) {
 		}
 	}
 
-		console.log(_cmd.eqLogic_id);
+		$.ajax({
+			type: 'POST',
+			url: 'plugins/groupe/core/ajax/groupe.ajax.php',
+			data: {
+				action: 'getStatus',
+				id: _cmd.eqLogic_id
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				if (data.result == 1) {
+					$('.action').show();
+				} else {
+					$('.action').hide();
+				}					
+ 				
 
+			}
+	   });	
 		
-//		if (eqLogic.configuration.activAction == 1) {
-//			$('.action').show();
-//		} else {
-//			$('.action').hide();
-//		}	
+
 //			
 }
 

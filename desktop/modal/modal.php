@@ -26,8 +26,10 @@ if (init('id') == '') {
 }
 
 $id = init('id');
+echo $id;
 
 $groupe = groupe::byId($id);
+
 if (!is_object($groupe)) { 
 		  
  throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));

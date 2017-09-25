@@ -17,7 +17,7 @@ Ensuite le configurer
 
 image::../images/groupe5.png[align="center"]
 
--Ajouter un équipement: Permet de sélectionner les commandes d'état
+-Ajouter un équipement: Permet de sélectionner un équipement avec les commandes d'état et les commandes actions en option si "activer les actions" est coché
 
 -Symbol AN : Symbol, das angezeigt wird, wenn mindestens 1 Befehl aktiv ist
 
@@ -47,4 +47,7 @@ image::../images/alerte.png[align="center"]
 
 Das Widget wird aktualisiert, sobald es eine Zustandsänderung gibt.
 
-Man kann es sich also vorstellen, es für irgendeinen Befehl zu benutzen.
+Un clic sur l'icône permet d'ouvrir une fenêtre et d'interagir
+
+image::../images/groupe8.png[align="center"]
+

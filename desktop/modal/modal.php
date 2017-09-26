@@ -26,7 +26,6 @@ if (init('id') == '') {
 }
 
 $id = init('id');
-echo $id;
 
 $groupe = groupe::byId($id);
 

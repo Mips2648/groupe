@@ -1,5 +1,7 @@
 ﻿[horizontal]
 
+26.04.2017:: Ajout des commandes en cliquant sur l'icône du widget.
+
 10.04.2017:: Ajout d'une commande pour connaître le déclencheur d'un changement d'état
 
 27.03.2017:: Ajout de commandes d'état. Préparation pour l'ajout de commande Action. Nettoyage du code.Refonte graphique de l'équipement. Maj doc

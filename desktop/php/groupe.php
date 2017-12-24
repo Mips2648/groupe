@@ -148,6 +148,29 @@ foreach ($eqLogics as $eqLogic) {
                 </table>  
                 
              
+              <div class="form-group"> 
+                <label class="col-sm-1 control-label">{{Commande ON}}</label>
+                <div class="col-sm-1">
+                    <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key='nameOn' placeholder="{{Nom}} " />
+                </div>
+                <div class="col-sm-6">
+                <span style="font-size: 75%;">{{Nom de la commande qui apparait dans la modale}}</span>
+                </div> 
+                
+               </div>
+
+              <div class="form-group"> 
+                <label class="col-sm-1 control-label">{{Commande OFF}}</label>
+                <div class="col-sm-1">
+                    <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key='nameOff' placeholder="{{Nom}} " />
+                </div>
+                <div class="col-sm-6">
+                <span style="font-size: 75%;">{{Nom de la commande qui apparait dans la modale}}</span>
+                </div>                 
+                
+                
+               </div>
+                              
              <div class="form-group"> 
                 <label class="col-sm-1 control-label">{{Icône On}}</label>
                 
@@ -172,6 +195,8 @@ foreach ($eqLogics as $eqLogic) {
                      </div>
                 </div>
             </div>
+            
+            
                                                       
            
   

@@ -46,7 +46,6 @@ $("body").delegate(".listCmdActionOn", 'click', function() {
 $('.cmdAction[data-action=addCmd]').on('click', function () {
 	var _cmd = "";
     addCmdToTable(_cmd);
-  
 });
 
 
@@ -74,6 +73,31 @@ $('.cmdAction[data-action=addCmd]').on('click', function () {
  $('body').undelegate('.icon .iconeAttrOff[data-l2key=iconOff]', 'click').delegate('.icone .iconeAttrOff[data-l2key=iconOff]', 'click', function () {
     $(this).empty();
 });
+
+function printEqLogic(_eqLogic) {
+	$('.action').show();
+	if (!isset(_eqLogic)) {
+		var _eqLogic = {configuration: {}};
+	}
+	
+	if (!isset(_eqLogic.configuration)) {
+	   _eqLogic.configuration = {};
+	}
+	
+	if (isset(_eqLogic.configuration.activAction)) {
+		if(_eqLogic.configuration.activAction == 1) {
+			$('.action').show();
+		} else {
+			$('.action').hide();
+			
+		}
+	} else {
+		$('.action').show();
+	}
+	
+	
+	
+}
 
  function saveEqLogic(_eqLogic) {
     if (!isset(_eqLogic.configuration)) {
@@ -106,15 +130,18 @@ $('.eqLogicAttr[data-l1key=configuration][data-l2key=activAction]').change(funct
 });		
  
 
+
+
 function addCmdToTable(_cmd) {
-	
-	
+		
     if (!isset(_cmd)) {
         var _cmd = {configuration: {}};
+		
     }
     if (!isset(_cmd.configuration)) {
         _cmd.configuration = {};
     }
+	
 	if (_cmd.name == 'Nombre On' || _cmd.name == 'Nombre Off' || _cmd.name == 'Etat' || _cmd.name == 'Dernier déclencheur' ) {
 		var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '"  >';
 		tr += '<td><input class="cmdAttr form-control" data-l1key="id" style="display : none;"><input class="cmdAttr form-control" data-l1key="name" style="width : 200px;margin-left:auto;margin-right:auto;" disabled /></td>';
@@ -149,11 +176,11 @@ function addCmdToTable(_cmd) {
 		tr += '</td><td class="trigger">';
 		tr += ' <input class="cmdAttr form-control input-sm"  data-type="' + _cmd.type + '" data-l1key="configuration" data-l2key="state"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += ' <a class="btn btn-default btn-sm cursor listCmdInfo" data-type="' + _cmd.type + '"  style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';		
-		tr += '</td><td class="action" >';
+		tr += '</td><td class="action" style="display : none;">';
 		tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="ON"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOn" data-type="' + _cmd.type + '" data-input="ON" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
-		tr += '</td><td class="action">';
-		tr += ' <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="OFF"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
+		tr += '</td><td class="action" style="display : none;">';
+		tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="OFF"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
 		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOff" data-type="' + _cmd.type + '" data-input="OFF" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
 		tr += '</td><td>';
 		tr += '<input type="checkbox" class="tooltips cmdAttr" data-l1key="configuration" data-l2key="reverse">';
@@ -168,31 +195,29 @@ function addCmdToTable(_cmd) {
 		}
 	}
 
-		$.ajax({
-			type: 'POST',
-			url: 'plugins/groupe/core/ajax/groupe.ajax.php',
-			data: {
-				action: 'getStatus',
-				id: _cmd.eqLogic_id
-			},
-			dataType: 'json',
-			error: function (request, status, error) {
-				handleAjaxError(request, status, error);
-			},
-			success: function (data) {
-				if (data.state != 'ok') {
-					$('#div_alert').showAlert({message: data.result, level: 'danger'});
-					return;
-				}
-				if (data.result == 1) {
-					$('.action').show();
-				} else {
-					$('.action').hide();
-				}					
- 				
-
+	$.ajax({
+		type: 'POST',
+		url: 'plugins/groupe/core/ajax/groupe.ajax.php',
+		data: {
+			action: 'getStatus',
+			id: $('.eqLogicAttr[data-l1key=id]').value()
+		},
+		dataType: 'json',
+		error: function (request, status, error) {
+			handleAjaxError(request, status, error);
+		},
+		success: function (data) {
+			if (data.state != 'ok') {
+				$('#div_alert').showAlert({message: data.result, level: 'danger'});
+				return;
 			}
-	   });	
+			if (data.result == 1) {
+				$('.action').show();
+			} else {
+				$('.action').hide();
+			}					
+		}
+   });	
 		
 
 //			

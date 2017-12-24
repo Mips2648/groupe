@@ -140,6 +140,10 @@ class groupe extends eqLogic {
 				if ($trigger->getConfiguration('state') != "") {
 					$z++;
 					$cmd = cmd::byId(str_replace('#', '', $trigger->getConfiguration('state')));
+					if(!is_object($cmd)) {
+						log::add('groupe','debug','cmd non trouvé' . $trigger->getName() );
+						continue;
+					}
 
 					$val = $cmd->execCmd();
 					if($trigger->getConfiguration('reverse') == 0) {

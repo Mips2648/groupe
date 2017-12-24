@@ -1,11 +1,29 @@
 ﻿[horizontal]
 
-26.04.2017:: Ajout des commandes en cliquant sur l'icône du widget.
+24.12.2017:: 
 
-10.04.2017:: Ajout d'une commande pour connaître le déclencheur d'un changement d'état
+** Possibilité de choisir le nom des commandes dans la modale
+** Autorisation de tous les utilisateurs
+** Correction du bug concernant la création des commandes
+** Correction des commandes inversées dans la modale
+** Icone
 
-27.03.2017:: Ajout de commandes d'état. Préparation pour l'ajout de commande Action. Nettoyage du code.Refonte graphique de l'équipement. Maj doc
+26.04.2017:: 
 
-20.03.2017:: Correction pour le mode personnalisé.Passage en stable.Possibilité d'inverser les commandes
+** Ajout des commandes en cliquant sur l'icône du widget.
 
-19.03.2017:: Verfügbarkeit des Plugins auf dem Markt in der Beta Version
+10.04.2017:: 
+
+** Ajout d'une commande pour connaître le déclencheur d'un changement d'état
+
+27.03.2017:: 
+
+** Ajout de commandes d'état. Préparation pour l'ajout de commande Action. Nettoyage du code.Refonte graphique de l'équipement. Maj doc
+
+20.03.2017:: 
+
+** Correction pour le mode personnalisé.Passage en stable.Possibilité d'inverser les commandes
+
+19.03.2017:: 
+
+** Mise à disposition du plugin sur le market en bétâ

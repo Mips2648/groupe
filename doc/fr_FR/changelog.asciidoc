@@ -2,6 +2,7 @@
 
 24.12.2017:: 
 
+** Correction du  bug d'affichage lors de la suppression d'un équipement
 ** Possibilité de choisir le nom des commandes dans la modale
 ** Autorisation de tous les utilisateurs
 ** Correction du bug concernant la création des commandes

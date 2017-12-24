@@ -22,7 +22,7 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function groupe_update() {
 
-		log::add('groupe', 'error', '!!! Voir le changelog et la doc !!!');
+		event::add('jeedom::alertPopup', 'Il faut sauvegarder vos équipements pour bénéficier des amélioration. Voir changelog');
 
     
 }

@@ -30,7 +30,14 @@ try {
 		$return = $groupe->getConfiguration('activAction');
 		ajax::success($return);
     }
-		
+	
+    if (init('action') == 'actionAll') {
+		log::add('groupe','debug', ' id ' . init('id'));
+        groupe::actionAll(init('id'));
+		ajax::success();
+    }
+	
+			
     throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

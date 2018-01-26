@@ -83,7 +83,6 @@ sendVarToJS('infoGroupe', $cmds);
 <style>
 td {
 	height:40px;
-	width:60px;
 }
 
 .on {

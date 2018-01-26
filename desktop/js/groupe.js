@@ -15,6 +15,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
  
+$("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
 
 $("body").delegate(".listCmdInfo", 'click', function() {
 	var type = $(this).attr('data-type');	
@@ -142,7 +143,7 @@ function addCmdToTable(_cmd) {
         _cmd.configuration = {};
     }
 	
-	if (_cmd.name == 'Nombre On' || _cmd.name == 'Nombre Off' || _cmd.name == 'Etat' || _cmd.name == 'Dernier déclencheur' ) {
+	if (_cmd.name == 'Nombre On' || _cmd.name == 'Nombre Off' || _cmd.name == 'Etat' || _cmd.name == 'Dernier déclencheur' || _cmd.name == 'All on' || _cmd.name == 'All off' ) {
 		var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '"  >';
 		tr += '<td><input class="cmdAttr form-control" data-l1key="id" style="display : none;"><input class="cmdAttr form-control" data-l1key="name" style="width : 200px;margin-left:auto;margin-right:auto;" disabled /></td>';
 		tr += '<span class="type" type="info" style="display : none;">' + jeedom.cmd.availableType() + '</span>';

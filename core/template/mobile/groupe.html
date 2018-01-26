@@ -4,7 +4,7 @@
     <br>
     <div class="verticalAlign">
     	<center>
-        	<span style="font-size : 3em;">
+        	<span style="font-size : 3em;" onClick="group_action_#id#()">
     			#icon#
             </span>
         </center>
@@ -21,6 +21,27 @@
 </div>
 
 <script>
+ function group_action_#id#() {
+		$.ajax({// fonction permettant de faire de l'ajax
+			type: "POST", // methode de transmission des données au fichier php
+			url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
+			data: {
+				action: "actionAll",
+				id: '#id#'
+			},
+			dataType: 'json',
+			error: function(request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function(data) { // si l'appel a bien fonctionné
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message:  data.result,level: 'danger'});
+					return;
+				}
+				console.log('result ' + data.result)
+			}
+		});	 
+ }
 </script>
 
 <style>

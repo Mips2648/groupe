@@ -82,7 +82,31 @@ class groupe extends eqLogic {
 		$status->setType('info');
 		$status->setSubType('other');
 		$status->save(); 
-					
+		
+		$allon = $this->getCmd(null, 'allon');
+		if (!is_object($allon)) {
+			$allon = new groupeCmd();
+			$allon->setName(__('All on', __FILE__));
+							
+		}
+		$allon->setLogicalId('allon');
+		$allon->setEqLogic_id($this->getId());
+		$allon->setType('action');
+		$allon->setSubType('other');
+		$allon->save(); 
+		
+		$alloff = $this->getCmd(null, 'alloff');
+		if (!is_object($alloff)) {
+			$alloff = new groupeCmd();
+			$alloff->setName(__('All off', __FILE__));
+							
+		}
+		$alloff->setLogicalId('alloff');
+		$alloff->setEqLogic_id($this->getId());
+		$alloff->setType('action');
+		$alloff->setSubType('other');
+		$alloff->save(); 
+							
 						
 		if ($this->getIsEnable() == 1) {
 			$listener = listener::byClassAndFunction('groupe', 'pull', array('groupe_id' => intval($this->getId())));
@@ -126,6 +150,43 @@ class groupe extends eqLogic {
 		if ($changed) {
 			$this->refreshWidget();
 		}			
+	}
+	
+	public function actionAll($_id, $_state=false){
+		$groupe = groupe::byId($_id);
+		if ($_state) {
+			$state = $_state;
+		} else {
+			
+			$cmdstatus = $groupe->getCmd(null, 'status');
+			if (!is_object($cmdstatus)) {
+				return;
+			}	
+			$state = $cmdstatus->execCmd();
+		}
+		$cmds = $groupe->getCmd();
+		
+		$except = array('alloff','allon','status','last','statuson','statusoff');
+		foreach ($cmds as $cmd) {
+			if (!in_array( $cmd->getLogicalId(), $except)) {
+				if ($state == 0) {
+					  $cmdon = cmd::byId(str_replace('#', '', $cmd->getConfiguration('ON')));
+					  if(!is_object($cmdon)) {
+						  log::add('groupe','debug','cmd non trouvé' . $cmd->getName() );
+						  continue;
+					  }
+					  $cmdon->execCmd();			
+					
+				} else {
+					  $cmdon = cmd::byId(str_replace('#', '', $cmd->getConfiguration('OFF')));
+					  if(!is_object($cmdon)) {
+						  log::add('groupe','debug','cmd non trouvé' . $cmd->getName() );
+						  continue;
+					  }
+					  $cmdon->execCmd();				
+				}
+			}
+		}
 	}
 	
 	public function get_info($_id=false){
@@ -203,9 +264,11 @@ class groupe extends eqLogic {
 			$version = jeedom::versionAlias($_version);
 			$infos = $this->get_info($this->id);
 			$etat = $infos[0];
+			$replace['#etat#'] = $etat;
 			$nbons = $infos[1];
 			$nboffs = $infos[2];
 			$nb_triggers = $infos[3];
+			
 			if ($etat == 1) {
 				$replace['#icon#'] = $this->getConfiguration('iconOn');
 				$replace['#nb#'] = $nbons;
@@ -228,7 +291,18 @@ class groupeCmd extends cmd {
 	public static $_widgetPossibility = array('custom' => false);
 	
     public function execute($_options = array()) {
-		 log::add('groupe', 'debug', 'Lancement de execute ');
+		$groupe = groupe::byId($this->getEqLogic_id());
+		if ($groupe->getConfiguration('activAction') == 0) {
+			return;
+		}
+		switch ($this->getLogicalId()) {
+			case 'allon': 
+			groupe::actionAll($this->getEqLogic_id(),'0');
+			break;
+			case 'alloff':
+			groupe::actionAll($this->getEqLogic_id(),'1');
+			break;
+		}		
     }
 }
 

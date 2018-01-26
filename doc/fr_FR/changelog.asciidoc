@@ -2,6 +2,8 @@
 
 24.12.2017:: 
 
+** Ajout des commandes All ON et All OFF
+** Possibilité de trier l'ordre des commandes dans la configuration de l'équipement
 ** Correction du  bug d'affichage lors de la suppression d'un équipement
 ** Possibilité de choisir le nom des commandes dans la modale
 ** Autorisation de tous les utilisateurs

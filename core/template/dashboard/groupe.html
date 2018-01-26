@@ -4,36 +4,59 @@
     <br>
     <div class="verticalAlign">
     	<center>
-        	<div onClick="groupe_plugin_#id#()" style="font-size : 3em;">
+        	<div id="icon" class="#etat#" onClick="group_action_#id#()" style="font-size : 3em;">
     			#icon#
             </div>
         </center>
     </div>
   	<div class="verticalAlign">
     	<center>
-    	<span  style="background-color:#cmdColor# !important;border-color : transparent !important;height:32px!important" >#nb# / #nb_triggers#</span> 
+    	<span  style="background-color:#cmdColor# !important;border-color : transparent !important;height:32px!important" onClick="group_info_#id#()">#nb# / #nb_triggers#</span> 
         </center> 
 
     </div>
+    <div id="modal_group"></div>
   
 </div>
 
 
 <script>
- function groupe_plugin_#id#() {
-	$('#md_modal').dialog({
+	$('#modal_group').dialog({
 		width : 500,
 		height: 500,
 		autoOpen: false,
 		modal: true,
 		
-		title: 'informations'
+		title: '#name_display#'
 	});
-
-	$('#md_modal').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
-	$('#md_modal').dialog('open');	
- }
+	
+ function group_action_#id#() {
+		$.ajax({// fonction permettant de faire de l'ajax
+			type: "POST", // methode de transmission des données au fichier php
+			url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
+			data: {
+				action: "actionAll",
+				id: '#id#'
+			},
+			dataType: 'json',
+			error: function(request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function(data) { // si l'appel a bien fonctionné
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message:  data.result,level: 'danger'});
+					return;
+				}
+				console.log('result ' + data.result)
+			}
+		});	 
+ }	
+ 
+ function group_info_#id#() {
+	$('#modal_group').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
+	$('#modal_group').dialog('open');	 
 	 
+ }
 </script>	
 
 <style>

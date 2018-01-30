@@ -59,9 +59,9 @@ Le widget
 >
 > Le widget se met à jour dés qu'il y a un changement d'état.
 >
-> Un clic sur l'icône permet de changer d'état. C'est à dire que s'il n'y a aucun équipement d'activé ils seront activée.Et si au moins un d'activé il sera désactivé
+> Un clic sur les infos permet de changer d'état. C'est à dire que s'il n'y a aucun équipement d'activé ils seront activée.Et si au moins un d'activé il sera désactivé 
 >
-> Un clic sur les infos ouvre une fenêtre
+> Un clic sur l'icône ouvre une fenêtre
 
 ![groupe8](../images/groupe8.png)
 

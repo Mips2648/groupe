@@ -279,6 +279,14 @@ class groupe extends eqLogic {
 				$replace['#nb#'] = '0';
 				$replace['#nb_triggers#'] = $nb_triggers;				
 			}
+			
+			$action = "onClick='group_action_" . $this->getId() . "()'";
+			$replace['#action#'] = $action;	
+			$info = "onClick='group_info_" . $this->getId() . "()'";
+			$replace['#info#'] = $info;				
+			
+					
+			
 			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'groupe', 'groupe')));	
 		} catch(Exception $e) {
 			log::add('groupe', 'error', 'error :' . $e);

@@ -15,7 +15,6 @@
         </center> 
 
     </div>
-    <div id="modal_group"></div>
   
 </div>
 
@@ -45,17 +44,16 @@
  }	
  
  function group_info_#id#() {
-	$('#modal_group').dialog({
+	$('#md_modal2').dialog({
 		width : 500,
 		height: 500,
 		autoOpen: false,
 		modal: true,
-		
 		title: '#name_display#'
 	});	 
 	 
-	$('#modal_group').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
-	$('#modal_group').dialog('open');	 
+	$('#md_modal2').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
+	$('#md_modal2').dialog('open');	 
 	 
  }
 </script>	

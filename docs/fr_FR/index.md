@@ -29,7 +29,7 @@ Ensuite le configurer
 
 **Icone ON** : Icône qui apparaîtra quand au moins 1 commande sera active
 
-**Icone Off** : Icône qui apparaîtra quand tous les équipements seront inactives
+**Icone Off** : Icône qui apparaîtra quand toutes les commandes seront inactives
 
 
 ### Ensuite possibilité de tester les différentes commandes
@@ -44,7 +44,7 @@ Ensuite le configurer
 
 **Nombre on**: nombre d'équipement actif
 
-**Etat**: Etat du widget (1 = 1 ou plusieurs actifs et = = tous inactifs)
+**Etat**: Etat du widget (1 = 1 ou plusieurs actifs et 0 = tous inactifs)
 
 Le widget
 ====

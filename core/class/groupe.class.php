@@ -284,9 +284,6 @@ class groupe extends eqLogic {
 			$replace['#action#'] = $action;	
 			$info = "onClick='group_info_" . $this->getId() . "()'";
 			$replace['#info#'] = $info;				
-			
-					
-			
 			return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'groupe', 'groupe')));	
 		} catch(Exception $e) {
 			log::add('groupe', 'error', 'error :' . $e);
@@ -299,7 +296,7 @@ class groupeCmd extends cmd {
 	public static $_widgetPossibility = array('custom' => false);
 	
     public function execute($_options = array()) {
-		$groupe = groupe::byId($this->getEqLogic_id());
+		$groupe = $this->getEqLogic();
 		if ($groupe->getConfiguration('activAction') == 0) {
 			return;
 		}

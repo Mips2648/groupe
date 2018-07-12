@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$plugin = plugin::byId('ics');
+$plugin = plugin::byId('groupe');
 sendVarToJS('eqType', 'groupe');
 $eqLogics = eqLogic::byType('groupe');
 ?>

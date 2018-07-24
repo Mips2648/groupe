@@ -7,7 +7,7 @@ Ce plugin permet de connaître l'état d'un groupe de commande et d'afficher le 
 Installation
 =============
 
-Comme n'importe quel plugin.Après l'avoir activer il faut ensuite aller dans Plugins/Monitoring/Groupe
+Comme n'importe quel plugin.Après l'avoir activé il faut ensuite aller dans Plugins/Monitoring/Groupe
 
 
 
@@ -29,7 +29,7 @@ Ensuite le configurer
 
 **Icone ON** : Icône qui apparaîtra quand au moins 1 commande sera active
 
-**Icone Off** : Icône qui apparaîtra quand tous les équipements seront inactives
+**Icone Off** : Icône qui apparaîtra quand toutes les commandes seront inactives
 
 
 ### Ensuite possibilité de tester les différentes commandes
@@ -44,7 +44,7 @@ Ensuite le configurer
 
 **Nombre on**: nombre d'équipement actif
 
-**Etat**: Etat du widget (1 = 1 ou plusieurs actifs et = = tous inactifs)
+**Etat**: Etat du widget (1 = 1 ou plusieurs actifs et 0 = tous inactifs)
 
 Le widget
 ====
@@ -59,7 +59,7 @@ Le widget
 >
 > Le widget se met à jour dés qu'il y a un changement d'état.
 >
-> Un clic sur les infos permet de changer d'état. C'est à dire que s'il n'y a aucun équipement d'activé ils seront activée.Et si au moins un d'activé il sera désactivé 
+> Un clic sur les infos permet de changer d'état. C'est à dire que s'il n'y a aucun équipement d'activé ils seront tous activés.Et si au moins un est activé il sera désactivé 
 >
 > Un clic sur l'icône ouvre une fenêtre
 

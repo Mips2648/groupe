@@ -165,25 +165,24 @@ class groupe extends eqLogic {
 			$state = $cmdstatus->execCmd();
 		}
 		$cmds = $groupe->getCmd();
-		
 		$except = array('alloff','allon','status','last','statuson','statusoff');
 		foreach ($cmds as $cmd) {
 			if (!in_array( $cmd->getLogicalId(), $except)) {
 				if ($state == 0) {
 					  $cmdon = cmd::byId(str_replace('#', '', $cmd->getConfiguration('ON')));
 					  if(!is_object($cmdon)) {
-						  log::add('groupe','debug','cmd non trouvé' . $cmd->getName() );
+						  log::add('groupe','debug','cmd ON non trouvé' . $cmd->getName() );
 						  continue;
 					  }
 					  $cmdon->execCmd();			
 					
 				} else {
-					  $cmdon = cmd::byId(str_replace('#', '', $cmd->getConfiguration('OFF')));
-					  if(!is_object($cmdon)) {
-						  log::add('groupe','debug','cmd non trouvé' . $cmd->getName() );
+					  $cmdoff = cmd::byId(str_replace('#', '', $cmd->getConfiguration('OFF')));
+					  if(!is_object($cmdoff)) {
+						  log::add('groupe','debug','cmd OFF non trouvé' . $cmd->getName() );
 						  continue;
 					  }
-					  $cmdon->execCmd();				
+					  $cmdoff->execCmd();				
 				}
 			}
 		}
@@ -296,16 +295,34 @@ class groupeCmd extends cmd {
 	public static $_widgetPossibility = array('custom' => false);
 	
     public function execute($_options = array()) {
+		
 		$groupe = $this->getEqLogic();
 		if ($groupe->getConfiguration('activAction') == 0) {
 			return;
 		}
+		log::add('groupe','debug','execute');
+		$cmds = $groupe->getCmd();
 		switch ($this->getLogicalId()) {
 			case 'allon': 
-			groupe::actionAll($this->getEqLogic_id(),'0');
+				log::add('groupe','debug','All on');
+				foreach ($cmds as $cmd) {
+					$cmdon = cmd::byId(str_replace('#', '', $cmd->getConfiguration('ON')));
+					if(!is_object($cmdon) || $cmd->getConfiguration('ON') == "") {
+						continue;
+					}
+					$cmdon->execCmd();					
+				}
 			break;
 			case 'alloff':
-			groupe::actionAll($this->getEqLogic_id(),'1');
+			log::add('groupe','debug','All off');
+				foreach ($cmds as $cmd) {
+					$cmdoff = cmd::byId(str_replace('#', '', $cmd->getConfiguration('OFF')));
+					if(!is_object($cmdoff) || $cmd->getConfiguration('OFF') == "") {
+						continue;
+					}
+					$cmdoff->execCmd();					
+					
+				}			
 			break;
 		}		
     }

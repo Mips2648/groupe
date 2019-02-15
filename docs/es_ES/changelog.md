@@ -1,3 +1,9 @@
+15.02.2019
+===
+
+* Ajout de la configuration générale du plugin dans la partie desktop
+* Commande All On/All off quelque soit l'état
+
 12.07.2018
 ===
 

@@ -2,7 +2,7 @@
     "plugins\/groupe\/desktop\/php\/groupe.php": {
         "Ajouter un groupe": "Add group",
         "Rechercher": "Search",
-        "Ajouter": "Add",
+        "Ajouter des Chaînes": "Ajouter des Chaînes",
         "Configuration": "Setup",
         "Mes groupes": "My groups",
         "Sauvegarder": "Save",
@@ -29,6 +29,22 @@
         "Icône On": "On icon",
         "Icône": "Icon",
         "Icône Off": "Off icon",
-        "Action": "Action"
+        "Action": "Action",
+        "Gestion": "Gestion",
+        "Ajouter": "Add",
+        "Mes Equipements": "Mes Equipements"
+    },
+    "plugins\/groupe\/core\/class\/groupe.class.php": {
+        "Nombre On": "Nombre On",
+        "Nombre Off": "Nombre Off",
+        "Etat": "Etat",
+        "Dernier déclencheur": "Dernier déclencheur",
+        "All on": "All on",
+        "All off": "All off",
+        "Commande déclencheur inconnue : #945#": "Commande déclencheur inconnue : #945#"
+    },
+    "plugins\/groupe\/desktop\/js\/groupe.js": {
+        "Tester": "Tester",
+        "Nom": "Nom"
     }
 }

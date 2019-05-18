@@ -21,6 +21,13 @@ require_once __DIR__ . '/../../../core/php/core.inc.php';
 
 
 function groupe_update() {
+	foreach (groupe::byType('groupe', true) as $group) {
+		try {
+			$group->save();
+		} catch (Exception $e) {
+
+		}
+	}	
 }
 
 

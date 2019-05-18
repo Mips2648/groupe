@@ -25,14 +25,12 @@ try {
 		ajax::success();
     }
     if (init('action') == 'getStatus') {
-		log::add('groupe','debug', ' id ' . init('id'));
         $groupe = groupe::byId(init('id'));
 		$return = $groupe->getConfiguration('activAction');
 		ajax::success($return);
     }
 	
     if (init('action') == 'actionAll') {
-		log::add('groupe','debug', ' id ' . init('id'));
         groupe::actionAll(init('id'));
 		ajax::success();
     }

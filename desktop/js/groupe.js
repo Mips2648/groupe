@@ -151,8 +151,8 @@ function addCmdToTable(_cmd) {
 		tr += '</td>';
 		tr += '<td>';
 		if (is_numeric(_cmd.id)) {
-			tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fa fa-cogs"></i></a> ';
-			tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fa fa-rss pull-right"></i> {{Tester}}</a>';
+			tr += '<a class="btn btn-default btn-xs cmdAction expertModeVisible" data-action="configure"><i class="fas fa-cogs"></i></a> ';
+			tr += '<a class="btn btn-default btn-xs cmdAction" data-action="test"><i class="fas fa-rss pull-right"></i> {{Tester}}</a>';
 		}
 		tr += '</td>';					
 		tr += '</tr>';	
@@ -176,17 +176,17 @@ function addCmdToTable(_cmd) {
 		tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" 	 placeholder="{{Nom}}">';
 		tr += '</td><td class="trigger">';
 		tr += ' <input class="cmdAttr form-control input-sm"  data-type="' + _cmd.type + '" data-l1key="configuration" data-l2key="state"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
-		tr += ' <a class="btn btn-default btn-sm cursor listCmdInfo" data-type="' + _cmd.type + '"  style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';		
+		tr += ' <a class="btn btn-default btn-sm cursor listCmdInfo" data-type="' + _cmd.type + '"  style="margin-left : 5px;"><i class="fas fa-list-alt "></i></a>';		
 		tr += '</td><td class="action" style="display : none;">';
 		tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="ON"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
-		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOn" data-type="' + _cmd.type + '" data-input="ON" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
+		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOn" data-type="' + _cmd.type + '" data-input="ON" style="margin-left : 5px;"><i class="fas fa-list-alt "></i></a>';
 		tr += '</td><td class="action" style="display : none;">';
 		tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-type="' + _cmd.type + '" data-l2key="OFF"  style="margin-bottom : 5px;width : 80%; display : inline-block;" disabled>';
-		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOff" data-type="' + _cmd.type + '" data-input="OFF" style="margin-left : 5px;"><i class="fa fa-list-alt "></i></a>';
+		tr += '<a class="btn btn-default btn-sm cursor listCmdActionOff" data-type="' + _cmd.type + '" data-input="OFF" style="margin-left : 5px;"><i class="fas fa-list-alt "></i></a>';
 		tr += '</td><td>';
 		tr += '<input type="checkbox" class="tooltips cmdAttr" data-l1key="configuration" data-l2key="reverse">';
 		tr += '</td><td>';
-		tr += '<i class="fa fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
+		tr += '<i class="fas fa-minus-circle pull-right cmdAction cursor" data-action="remove"></i>';
 		tr += '</td>';
 		tr += '</tr>';
 		$('#table_cmd tbody').append(tr);

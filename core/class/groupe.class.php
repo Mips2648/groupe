@@ -34,6 +34,44 @@ class groupe extends eqLogic {
         return true;
     }
 
+	 public function preSave() {
+		if($this->getConfiguration('activAction') == 1) { 
+			$allon = $this->getCmd(null, 'allon');
+			if (!is_object($allon)) {
+				$allon = new groupeCmd();
+				$allon->setName(__('All on', __FILE__));
+								
+			}
+			$allon->setLogicalId('allon');
+			$allon->setEqLogic_id($this->getId());
+			$allon->setType('action');
+			$allon->setSubType('other');
+			$allon->save(); 
+			
+			$alloff = $this->getCmd(null, 'alloff');
+			if (!is_object($alloff)) {
+				$alloff = new groupeCmd();
+				$alloff->setName(__('All off', __FILE__));
+								
+			}
+			$alloff->setLogicalId('alloff');
+			$alloff->setEqLogic_id($this->getId());
+			$alloff->setType('action');
+			$alloff->setSubType('other');
+			$alloff->save(); 
+		} else {
+			$allon = $this->getCmd(null, 'allon');
+			if (is_object($allon)) {
+				$allon->remove();
+			}
+			$alloff = $this->getCmd(null, 'alloff');
+			if (is_object($alloff)) {
+				$alloff->remove();
+			}							
+		}
+	 }
+
+
     public function postUpdate() {
 		$statusOn = $this->getCmd(null, 'statuson');
 		if (!is_object($statusOn)) {
@@ -81,33 +119,8 @@ class groupe extends eqLogic {
 		$status->setEqLogic_id($this->getId());
 		$status->setType('info');
 		$status->setSubType('other');
-		$status->save(); 
-		
-		$allon = $this->getCmd(null, 'allon');
-		if (!is_object($allon)) {
-			$allon = new groupeCmd();
-			$allon->setName(__('All on', __FILE__));
-							
-		}
-		$allon->setLogicalId('allon');
-		$allon->setEqLogic_id($this->getId());
-		$allon->setType('action');
-		$allon->setSubType('other');
-		$allon->save(); 
-		
-		$alloff = $this->getCmd(null, 'alloff');
-		if (!is_object($alloff)) {
-			$alloff = new groupeCmd();
-			$alloff->setName(__('All off', __FILE__));
-							
-		}
-		$alloff->setLogicalId('alloff');
-		$alloff->setEqLogic_id($this->getId());
-		$alloff->setType('action');
-		$alloff->setSubType('other');
-		$alloff->save(); 
-							
-						
+		$status->save();
+
 		if ($this->getIsEnable() == 1) {
 			$listener = listener::byClassAndFunction('groupe', 'pull', array('groupe_id' => intval($this->getId())));
 			if (!is_object($listener)) {
@@ -188,7 +201,7 @@ class groupe extends eqLogic {
 		}
 	}
 	
-	public function get_info($_id=false){
+	public function get_info(){
 		try{
 			$infos = array();
 			$i=0;
@@ -261,7 +274,7 @@ class groupe extends eqLogic {
 				return $replace;
 			}
 			$version = jeedom::versionAlias($_version);
-			$infos = $this->get_info($this->id);
+			$infos = $this->get_info();
 			$etat = $infos[0];
 			$replace['#etat#'] = $etat;
 			$nbons = $infos[1];
@@ -300,11 +313,9 @@ class groupeCmd extends cmd {
 		if ($groupe->getConfiguration('activAction') == 0) {
 			return;
 		}
-		log::add('groupe','debug','execute');
 		$cmds = $groupe->getCmd();
 		switch ($this->getLogicalId()) {
 			case 'allon': 
-				log::add('groupe','debug','All on');
 				foreach ($cmds as $cmd) {
 					$cmdon = cmd::byId(str_replace('#', '', $cmd->getConfiguration('ON')));
 					if(!is_object($cmdon) || $cmd->getConfiguration('ON') == "") {
@@ -314,7 +325,6 @@ class groupeCmd extends cmd {
 				}
 			break;
 			case 'alloff':
-			log::add('groupe','debug','All off');
 				foreach ($cmds as $cmd) {
 					$cmdoff = cmd::byId(str_replace('#', '', $cmd->getConfiguration('OFF')));
 					if(!is_object($cmdoff) || $cmd->getConfiguration('OFF') == "") {

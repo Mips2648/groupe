@@ -1,22 +1,25 @@
-<div class="eqLogic eqLogic-widget allowResize allowReorderCmd " style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
-    
-	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.1em;#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;position: relative;top:-2px;">#object_name#</span></a></center>    <br>
-    <div class="verticalAlign">
+<!--<div class="eqLogic eqLogic-widget allowResize allowReorderCmd " style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >-->
+<div class="eqLogic eqLogic-widget allowResize allowReorderCmd #custom_layout# #eqLogic_class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" style="width: #width#;height: #height#;#style#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#">		
+	<center class="widget-name">
+		<span class="warning" title="#alert_name#">
+			<i class='#alert_icon#'></i>
+		</span>
+		<span class="reportModeVisible" style="display:none;color:white;">#name_display# <span style="font-size: 0.85em;">#object_name#</span></span>
+		<a href="#eqLink#" class="reportModeHidden" style="#hideEqLogicName#" title="#name#">#name_display# <span>#object_name#</span></a>
+	</center>
+    <div>
     	<center>
         	<span style="font-size : 3em;" #action#>
     			#icon#
             </span>
         </center>
     </div>
-  	<div class="verticalAlign">
+  	<div>
     	<center>
-    	<span class="data_#id#" style="background-color:#cmdColor# !important;border-color : transparent !important;height:32px!important" >#nb# / #nb_triggers#</span> 
+    	<span class="data_#id#" >#nb# / #nb_triggers#</span> 
         </center> 
 
     </div>
-    
-    
-  
 </div>
 
 <script>
@@ -51,6 +54,4 @@
 	border-radius:3px;
 	padding:4px;
 }
-
-
 </style>

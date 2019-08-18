@@ -11,7 +11,7 @@ $eqLogics = eqLogic::byType('groupe');
     <div class="col-xs-12 eqLogicThumbnailDisplay">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
         <div class="eqLogicThumbnailContainer">
-        	<div class="cursor eqLogicAction logoPrimary" data-action="add"  >
+        	<div class="cursor eqLogicAction logoSecondary" data-action="add"  >
                 <i class="fas fa-plus-circle"></i>
                 <br>
                 <span>{{Ajouter}}</span>
@@ -45,7 +45,7 @@ $eqLogics = eqLogic::byType('groupe');
 			</span>
 		</div>
         <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fa fa-arrow-circle-left"></i></a></li>
+        <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
         <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
         <li role="presentation"><a href="#infotab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Configuration}}</a></li>
         <li role="presentation"><a href="#infocmd" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Commandes}}</a></li>
@@ -68,7 +68,7 @@ $eqLogics = eqLogic::byType('groupe');
                                 <select id="sel_object" class="eqLogicAttr form-control" data-l1key="object_id">
                                     <option value="">{{Aucun}}</option>
                                     <?php
-                                        foreach (object::all() as $object) {
+                                        foreach (jeeObject::all() as $object) {
                                             echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
                                         }
                                     ?>
@@ -103,7 +103,7 @@ $eqLogics = eqLogic::byType('groupe');
              <div class="form-group">
              <label class="col-md-2 control-label">{{Ajouter un équipement}}</label>
               <div class="col-md-2">
-              <a  class="btn btn-success btn-sm cmdAction btAdd_table_cmd " data-action="addCmd"><i class="fa fa-plus-circle"></i></a>
+              <a  class="btn btn-success btn-sm cmdAction btAdd_table_cmd " data-action="addCmd"><i class="fas fa-plus-circle"></i></a>
              </div>
             <br/>    
             </div> 
@@ -157,7 +157,7 @@ $eqLogics = eqLogic::byType('groupe');
                     <div id="div_on">
                         <div class="icone">
                              <div class="col-sm-2">
-                                <a class="iconeOn btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+                                <a class="iconeOn btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
                                 <span class="eqLogicAttr iconeAttrOn label label-info cursor"  data-l1key="configuration" data-l2key="iconOn"  style="font-size : 1em;" ></span>
                              </div>                  
                          </div>
@@ -169,7 +169,7 @@ $eqLogics = eqLogic::byType('groupe');
                     <div id="div_off">
                         <div class="icone">
                              <div class="col-sm-2">
-                                <a class="iconeOff btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fa fa-flag"></i> {{Icône}}</a>
+                                <a class="iconeOff btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>
                                 <span class="eqLogicAttr iconeAttrOff label label-info cursor" data-l1key="configuration" data-l2key="iconOff"  style="font-size : 1em;" ></span>
                              </div>                   
                          </div>

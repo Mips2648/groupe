@@ -1,11 +1,11 @@
-<!--<div class="eqLogic eqLogic-widget allowResize allowReorderCmd " style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >-->
 <div class="eqLogic eqLogic-widget allowResize allowReorderCmd #custom_layout# #eqLogic_class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#">		
-	<center class="widget-name">
-		<span class="warning" title="#alert_name#">
-			<i class='#alert_icon#'></i>
+	<center>
+		<span class="widget-name">
+			<span class="warning" title="#alert_name#">
+				<i class='#alert_icon#'></i>
+			</span>
+			<span class="cmdName">#name_display# <span style="display:none;" class="object_name">#object_name#</span></span><br/>
 		</span>
-		<span class="reportModeVisible" style="display:none;color:white;">#name_display# <span style="font-size: 0.85em;">#object_name#</span></span>
-		<a href="#eqLink#" class="reportModeHidden" style="#hideEqLogicName#" title="#name#">#name_display# <span>#object_name#</span></a>
 	</center>
     <div>
     	<center>
@@ -18,33 +18,33 @@
     	<center>
     	<span class="data_#id#" >#nb# / #nb_triggers#</span> 
         </center> 
-
     </div>
+	<script>
+	 function group_action_#id#() {
+			$.ajax({// fonction permettant de faire de l'ajax
+				type: "POST", // methode de transmission des données au fichier php
+				url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
+				data: {
+					action: "actionAll",
+					id: '#id#'
+				},
+				dataType: 'json',
+				error: function(request, status, error) {
+					handleAjaxError(request, status, error);
+				},
+				success: function(data) { // si l'appel a bien fonctionné
+					if (data.state != 'ok') {
+						$('#div_alert').showAlert({message:  data.result,level: 'danger'});
+						return;
+					}
+					console.log('result ' + data.result)
+				}
+			});	 
+	 }
+</script>	
+	
 </div>
 
-<script>
- function group_action_#id#() {
-		$.ajax({// fonction permettant de faire de l'ajax
-			type: "POST", // methode de transmission des données au fichier php
-			url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
-			data: {
-				action: "actionAll",
-				id: '#id#'
-			},
-			dataType: 'json',
-			error: function(request, status, error) {
-				handleAjaxError(request, status, error);
-			},
-			success: function(data) { // si l'appel a bien fonctionné
-				if (data.state != 'ok') {
-					$('#div_alert').showAlert({message:  data.result,level: 'danger'});
-					return;
-				}
-				console.log('result ' + data.result)
-			}
-		});	 
- }
-</script>
 
 <style>
 .data {

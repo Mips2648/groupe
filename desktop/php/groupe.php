@@ -180,10 +180,11 @@ $eqLogics = eqLogic::byType('groupe');
             </div>
             
            <div role="tabpanel" class="tab-pane" id="infocmd">  
-              <table style="width: 400px" id="table_info" class="table table-bordered table-condensed">
+              <table id="table_info" class="table table-bordered table-condensed">
                   <thead>
                       <tr>
                           <th>{{Nom}}</th>
+						  <th>{{type}}</th>
                           <th>{{Action}}</th>
                       </tr>
                   </thead>

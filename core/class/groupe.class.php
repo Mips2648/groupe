@@ -118,7 +118,7 @@ class groupe extends eqLogic {
 		$status->setLogicalId('last');
 		$status->setEqLogic_id($this->getId());
 		$status->setType('info');
-		$status->setSubType('other');
+		$status->setSubType('string');
 		$status->save();
 
 		if ($this->getIsEnable() == 1) {
@@ -185,7 +185,7 @@ class groupe extends eqLogic {
 				$id = $one->getConfiguration('state');
 				$cmd = cmd::byId(str_replace('#', '', $id));
 				$state = $cmd->execCmd();
-				$last_seen =  $cmd->getCollectDate();
+				$last_seen =  $cmd->getValueDate();
 				$status = $groupe->getCmd(null, 'last');
 				if (is_object($status)) {
 					$last = $status->execCmd();

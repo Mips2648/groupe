@@ -1,6 +1,10 @@
 <div class="eqLogic eqLogic-widget allowResize allowReorderCmd #custom_layout# #eqLogic_class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#">	
-	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.1em;#hideEqLogicName#">#name_display# <span class="object_name">#object_name#</span></a></center>
-    <center>  
+	<center class="widget-name">
+		<span class="cmd refresh pull-right cursor"></span>    
+		<span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
+		<a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
+	</center>
+	
     <div>
     	<center>
         	<div id="icon" class="#etat#"  #info# style="font-size : 3em;">
@@ -15,9 +19,12 @@
     </div>
 	<script>
 	 function group_action_#id#() {
+		var el = $('.eqLogic[data-eqLogic_uid=#uid#] .refresh');
+		el.empty().append('<i class="fas fa-sync fa-spin"></i>');	 
 		$.ajax({// fonction permettant de faire de l'ajax
 			type: "POST", // methode de transmission des données au fichier php
 			url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
+			global:false,
 			data: {
 				action: "actionAll",
 				id: '#id#'
@@ -31,6 +38,7 @@
 					$('#div_alert').showAlert({message:  data.result,level: 'danger'});
 					return;
 				}
+				el.empty();
 			}
 		});	 
 	 }	

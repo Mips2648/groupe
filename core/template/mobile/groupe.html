@@ -1,10 +1,8 @@
 <div class="eqLogic eqLogic-widget allowResize allowReorderCmd #custom_layout# #eqLogic_class#" data-eqType="#eqType#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" style="border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;width: #width#;height: #height#;#style#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#">		
 	<center>
 		<span class="widget-name">
-			<span class="warning" title="#alert_name#">
-				<i class='#alert_icon#'></i>
-			</span>
-			<span class="cmdName">#name_display# <span style="display:none;" class="object_name">#object_name#</span></span><br/>
+			<span class="cmd refresh pull-right cursor"></span> 
+			<span>#name_display# <span class="object_name">#object_name#</span></span><br/>
 		</span>
 	</center>
     <div>
@@ -20,7 +18,9 @@
         </center> 
     </div>
 	<script>
-	 function group_action_#id#() {
+		function group_action_#id#() {
+			var el = $('.eqLogic[data-eqLogic_uid=#uid#] .refresh');
+			el.empty().append('<i class="fas fa-sync fa-spin"></i>');			
 			$.ajax({// fonction permettant de faire de l'ajax
 				type: "POST", // methode de transmission des données au fichier php
 				url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
@@ -37,10 +37,10 @@
 						$('#div_alert').showAlert({message:  data.result,level: 'danger'});
 						return;
 					}
-					console.log('result ' + data.result)
+					el.empty();
 				}
 			});	 
-	 }
+		}
 </script>	
 	
 </div>

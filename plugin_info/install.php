@@ -23,6 +23,12 @@ require_once __DIR__ . '/../../../core/php/core.inc.php';
 function groupe_update() {
 	foreach (groupe::byType('groupe', true) as $group) {
 		try {
+			$cmd = $group->getCmd(null, 'last');
+			if (is_object($cmd)) {
+				$cmd->setType('info');
+				$cmd->setSubType('string');
+				$cmd->save();				
+			}
 			$group->save();
 		} catch (Exception $e) {
 

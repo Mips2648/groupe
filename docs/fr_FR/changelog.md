@@ -1,3 +1,9 @@
+XX-11-2019
+===
+
+- Suppression de la roue crantée
+- Amélioration de la modale (mise en forme,ajout de la date de la dernière communication)
+
 XX-08-2019
 ===
 

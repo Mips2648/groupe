@@ -22,48 +22,15 @@ if (init('id') == '') {
 }
 
 $id = init('id');
-
 $groupe = groupe::byId($id);
-
 if (!is_object($groupe)) { 
 		  
  throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
  }
- 
-
 $active = $groupe->getConfiguration('activAction');
-
-$name_off = $groupe->getConfiguration('nameOff');
-if ($name_off == '') {
-	$name_off = 'OFF';
-	
-}
-$name_on =  $groupe->getConfiguration('nameOn');
-if ($name_on == '') {
-	$name_on = 'ON';
-	
-}
-
-$all = $groupe->getCmd();
-$cmds = array();
-$i=0;
-foreach ($all as $one) {
-	if ($one->getlogicalId () == '') {
-		$id = $one->getConfiguration('state');
-		$cmd = cmd::byId(str_replace('#', '', $id));
-		$state = $cmd->execCmd();
-		log::add('groupe', 'debug', 'state :' . $state);
-		log::add('groupe', 'debug', 'name :' . $cmd->getName());
-		log::add('groupe', 'debug', 'reverse :' . $groupe->getConfiguration('reverse'));
-		if($one->getConfiguration('reverse') == 1) {
-			
-			($state == 0) ? $state = 1 : $state = 0;
-		}
-		$cmds[$one->getName()] = array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off);
-	}
-}
-
-
+$name_off = $groupe->getConfiguration('nameOff','OFF');
+$name_on =  $groupe->getConfiguration('nameOn','ON');
+$cmds = groupe::getCmdEq(init('id'));
 sendVarToJS('infoGroupe', $cmds);
 
 
@@ -76,8 +43,11 @@ sendVarToJS('infoGroupe', $cmds);
 <thead>
 	<tr>
 		<th>{{Nom}}</th>
-		<th>{{Commande ON}}</th>
-	   	<th>{{Commande OFF}}</th>
+		<?php
+		if($active == 1) {
+			echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
+		}
+		?>
 		<th>{{Dernière communication}}</th>
 	</tr>
 	
@@ -96,8 +66,12 @@ sendVarToJS('infoGroupe', $cmds);
 <thead>
 	<tr>
 		<th>{{Nom}}</th>
-		<th >{{Commande ON}}</th>
-	   	<th >{{Commande OFF}}</th>
+		<?php
+		if($active == 1) {
+			echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
+		}
+		?>
+		
 		<th >{{Dernière communication}}</th>
 	</tr>
 	
@@ -121,25 +95,13 @@ sendVarToJS('infoGroupe', $cmds);
 	width:150px;
 	padding:10px;
 }
-
-	#inactiveTable th,  #activeTable th {
+#inactiveTable th,  #activeTable th {
 		text-align: center;
 		padding:10px;
-	}
+}
 	
 
-.on {
-	background-color: green;
-	border:none !important;
-	opacity: 0.8;
-	width:100px;
-}
-.off {
-	background-color: red;
-	border:none !important;
-	opacity: 0.8;
-	width:100px;
-}
+
 </style>
 
 <?php include_file('desktop', 'modal', 'js', 'groupe');?>

@@ -34,6 +34,59 @@ try {
         groupe::actionAll(init('id'));
 		ajax::success();
     }
+    if (init('action') == 'getCmdEq') {
+        $return = groupe::getCmdEq(init('id'));
+		ajax::success($return);
+    }
+    if (init('action') == 'execCmdEq') {
+		$cmdEq= cmd::byId(init('cmdId'));
+		$groupe = $cmdEq->getEqLogic();
+		$cmdAction = cmd::byId(init('id'));
+		if (!is_object($groupe) || !is_object($cmdEq) || !is_object($cmdAction)) { 
+		 throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
+		 }
+		$cmdAction->execCmd();
+		
+		$active = $groupe->getConfiguration('activAction');
+
+		$name_off = $groupe->getConfiguration('nameOff','OFF');
+
+		$name_on =  $groupe->getConfiguration('nameOn','ON');
+
+		$all = $groupe->getCmd();
+		$cmds = array();
+		$i=0;
+		foreach ($all as $one) {
+			if ($one->getlogicalId () == '') {
+				$id = $one->getConfiguration('state');
+				$cmd = cmd::byId(str_replace('#', '', $id));
+				if ($cmdEq->getName() == $one->getname()) {
+					if(init('id') == str_replace('#', '', $one->getConfiguration('ON'))) {
+						$state =1;
+						log::add('groupe', 'debug', 'Commande ON :' . $cmdEq->getName() );
+					} else {
+						log::add('groupe', 'debug', 'Commande OFF :' . $cmdEq->getName());
+						$state =0;
+					}
+					$last_seen =  date('Y-m-d H:i:s');
+				} else {
+					$state = $cmd->execCmd();
+					$last_seen =  $cmd->getCollectDate();					
+				}
+				if($one->getConfiguration('reverse') == 1) {
+					($state == 0) ? $state = 1 : $state = 0;
+				}
+				$cmds[$one->getName()] = array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off,$last_seen,$one->getID());
+			}
+		}		
+		
+		
+//		$id = $cmdEq->getConfiguration('state');
+//		$cmd = cmd::byId(str_replace('#', '', $id));
+//		$state = $cmd->execCmd();
+
+		ajax::success($cmds);
+	}
 	
 			
     throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

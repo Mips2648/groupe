@@ -165,6 +165,50 @@ class groupe extends eqLogic {
 		}			
 	}
 	
+	public function getCmdEq($_id){
+		$groupe = groupe::byId($_id);
+
+		if (!is_object($groupe)) { 
+
+		 throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
+		 }
+
+
+		$active = $groupe->getConfiguration('activAction');
+
+		$name_off = $groupe->getConfiguration('nameOff','OFF');
+
+		$name_on =  $groupe->getConfiguration('nameOn','ON');
+
+		$all = $groupe->getCmd();
+		$cmds = array();
+		$i=0;
+		foreach ($all as $one) {
+			if ($one->getlogicalId () == '') {
+				$id = $one->getConfiguration('state');
+				$cmd = cmd::byId(str_replace('#', '', $id));
+				$state = $cmd->execCmd();
+				$last_seen =  $cmd->getCollectDate();
+				$status = $groupe->getCmd(null, 'last');
+				if (is_object($status)) {
+					$last = $status->execCmd();
+
+				}				
+				
+				log::add('groupe', 'debug', 'state :' . $state);
+				log::add('groupe', 'debug', 'name :' . $cmd->getName());
+				log::add('groupe', 'debug', 'reverse :' . $groupe->getConfiguration('reverse'));
+				if($one->getConfiguration('reverse') == 1) {
+
+					($state == 0) ? $state = 1 : $state = 0;
+				}
+				
+				$cmds[$one->getName()] = array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off,$last_seen,$one->getID());
+			}
+		}		
+		return $cmds;
+	}
+	
 	public function actionAll($_id, $_state=false){
 		$groupe = groupe::byId($_id);
 		if ($_state) {
@@ -256,6 +300,7 @@ class groupe extends eqLogic {
 		foreach ($cmds as $cmd) {
 			if ($cmd->getConfiguration('state') == ('#' .$_trigger_id . '#')) {
 				$this->checkAndUpdateCmd('last', $cmd->getName());
+				
 				break;
 			}
 		}

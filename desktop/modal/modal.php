@@ -69,40 +69,83 @@ sendVarToJS('infoGroupe', $cmds);
 
 ?>
 
-
+<center>
 <h3>Équipements <?php echo  $name_on ?> </h1>
+<table border="0"  id='activeTable'> 
 
-<table border="0"  id='activeTable'> </table>
+<thead>
+	<tr>
+		<th>{{Nom}}</th>
+		<th>{{Commande ON}}</th>
+	   	<th>{{Commande OFF}}</th>
+		<th>{{Dernière communication}}</th>
+	</tr>
+	
+</thead>	
+	<tbody></tbody>
+	
+	
+</table>	
+	
+</center>
+
+
+<center>
 <h3>Équipements   <?php echo  $name_off ?></h1>
-<table border="0"  id='inactiveTable'> </table>
+<table border="0"  id='inactiveTable'> 
+<thead>
+	<tr>
+		<th>{{Nom}}</th>
+		<th >{{Commande ON}}</th>
+	   	<th >{{Commande OFF}}</th>
+		<th >{{Dernière communication}}</th>
+	</tr>
+	
+</thead>	
+	
+	<tbody></tbody>
+	
+</table>
+</center>
+
+
+
 
 <br />
 
 
 
 <style>
-td {
+#inactiveTable td,  #activeTable td{
 	height:40px;
+	width:150px;
+	padding:10px;
 }
+
+	#inactiveTable th,  #activeTable th {
+		text-align: center;
+		padding:10px;
+	}
+	
 
 .on {
 	background-color: green;
 	border:none !important;
 	opacity: 0.8;
+	width:100px;
 }
 .off {
 	background-color: red;
 	border:none !important;
 	opacity: 0.8;
+	width:100px;
 }
 </style>
 
 <?php include_file('desktop', 'modal', 'js', 'groupe');?>
 
 <script>
-console.log(infoGroupe)
 readTable(infoGroupe);
-
 </script>
 
 

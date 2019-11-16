@@ -1,7 +1,7 @@
 
 function readTable(infoGroupe) {
-	$("#activeTable").html('');
-	$("#inactiveTable").html('');
+	$("#activeTable tbody").empty();
+	$("#inactiveTable tbody").empty();
 	var html = "";
 	var html1 = "";
 	for (var id in infoGroupe) {
@@ -21,8 +21,9 @@ function readTable(infoGroupe) {
 			
 		}
 	}
-	$("#activeTable").html(html1);
-	$("#inactiveTable").html(html);
+	console.log(html1)
+	$("#activeTable tbody").append(html1);
+	$("#inactiveTable tbody").append(html);
 }
 
 

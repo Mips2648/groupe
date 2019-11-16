@@ -12,29 +12,27 @@
     	<center>
     	<span  style="background-color:#cmdColor# !important;border-color : transparent !important;height:32px!important"  #action# >#nb# / #nb_triggers#</span> 
         </center> 
-
     </div>
 	<script>
-
 	 function group_action_#id#() {
-			$.ajax({// fonction permettant de faire de l'ajax
-				type: "POST", // methode de transmission des données au fichier php
-				url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
-				data: {
-					action: "actionAll",
-					id: '#id#'
-				},
-				dataType: 'json',
-				error: function(request, status, error) {
-					handleAjaxError(request, status, error);
-				},
-				success: function(data) { // si l'appel a bien fonctionné
-					if (data.state != 'ok') {
-						$('#div_alert').showAlert({message:  data.result,level: 'danger'});
-						return;
-					}
+		$.ajax({// fonction permettant de faire de l'ajax
+			type: "POST", // methode de transmission des données au fichier php
+			url: "plugins/groupe/core/ajax/groupe.ajax.php", // url du fichier php
+			data: {
+				action: "actionAll",
+				id: '#id#'
+			},
+			dataType: 'json',
+			error: function(request, status, error) {
+				handleAjaxError(request, status, error);
+			},
+			success: function(data) { // si l'appel a bien fonctionné
+				if (data.state != 'ok') {
+					$('#div_alert').showAlert({message:  data.result,level: 'danger'});
+					return;
 				}
-			});	 
+			}
+		});	 
 	 }	
 
 	 function group_info_#id#() {
@@ -45,16 +43,11 @@
 			modal: true,
 			title: '#name_display#'
 		});	 
-
 		$('#md_modal2').load('index.php?v=d&plugin=groupe&modal=modal&id=#id#');
 		$('#md_modal2').dialog('open');	 
-
 	 }
-
 	</script>			
-		
 </div>
-
 
 <style>
 .data {

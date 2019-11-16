@@ -175,11 +175,8 @@ class groupe extends eqLogic {
 
 
 		$active = $groupe->getConfiguration('activAction');
-
 		$name_off = $groupe->getConfiguration('nameOff','OFF');
-
 		$name_on =  $groupe->getConfiguration('nameOn','ON');
-
 		$all = $groupe->getCmd();
 		$cmds = array();
 		$i=0;

@@ -23,89 +23,72 @@ if (init('id') == '') {
 
 $id = init('id');
 $groupe = groupe::byId($id);
-if (!is_object($groupe)) { 
-		  
- throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
- }
+if (!is_object($groupe)) { 	  
+	throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
+}
 $active = $groupe->getConfiguration('activAction');
 $name_off = $groupe->getConfiguration('nameOff','OFF');
 $name_on =  $groupe->getConfiguration('nameOn','ON');
 $cmds = groupe::getCmdEq(init('id'));
 sendVarToJS('infoGroupe', $cmds);
-
-
 ?>
 
 <center>
-<h3>Équipements <?php echo  $name_on ?> </h1>
-<table border="0"  id='activeTable'> 
-
-<thead>
-	<tr>
-		<th>{{Nom}}</th>
-		<?php
-		if($active == 1) {
-			echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
-		}
-		?>
-		<th>{{Dernière communication}}</th>
-	</tr>
-	
-</thead>	
-	<tbody></tbody>
-	
-	
-</table>	
-	
+	<h3>Équipements <?php echo  $name_on ?> </h1>
+	<table border="0"  id='activeTable'> 
+		<thead>
+			<tr>
+				<th>{{Nom}}</th>
+				<?php
+				if($active == 1) {
+					echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
+				}
+				?>
+				<th>{{Dernière communication}}</th>
+			</tr>
+		</thead>	
+		<tbody></tbody>
+	</table>	
 </center>
 
 
 <center>
-<h3>Équipements   <?php echo  $name_off ?></h1>
-<table border="0"  id='inactiveTable'> 
-<thead>
-	<tr>
-		<th>{{Nom}}</th>
-		<?php
-		if($active == 1) {
-			echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
-		}
-		?>
-		
-		<th >{{Dernière communication}}</th>
-	</tr>
-	
-</thead>	
-	
-	<tbody></tbody>
-	
-</table>
+	<h3>Équipements   <?php echo  $name_off ?></h1>
+	<table border="0"  id='inactiveTable'> 
+		<thead>
+			<tr>
+				<th>{{Nom}}</th>
+				<?php
+				if($active == 1) {
+					echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
+				}
+				?>
+
+				<th >{{Dernière communication}}</th>
+			</tr>
+		</thead>	
+		<tbody></tbody>
+	</table>
 </center>
-
-
-
-
-<br />
-
-
 
 <style>
 #inactiveTable td,  #activeTable td{
 	height:40px;
 	width:150px;
 	padding:10px;
+	text-align: center;
 }
 #inactiveTable th,  #activeTable th {
-		text-align: center;
-		padding:10px;
+	text-align: center;
+	padding:10px;
+	text-align: center;
 }
-	
-
+#inactiveTable button,  #activeTable button {
+	width: fit-content;
+}
 
 </style>
-
 <?php include_file('desktop', 'modal', 'js', 'groupe');?>
-
 <script>
 readTable(infoGroupe);
 </script>

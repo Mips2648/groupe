@@ -46,13 +46,9 @@ try {
 		 throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
 		 }
 		$cmdAction->execCmd();
-		
 		$active = $groupe->getConfiguration('activAction');
-
 		$name_off = $groupe->getConfiguration('nameOff','OFF');
-
 		$name_on =  $groupe->getConfiguration('nameOn','ON');
-
 		$all = $groupe->getCmd();
 		$cmds = array();
 		$i=0;
@@ -79,12 +75,6 @@ try {
 				$cmds[$one->getName()] = array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off,$last_seen,$one->getID());
 			}
 		}		
-		
-		
-//		$id = $cmdEq->getConfiguration('state');
-//		$cmd = cmd::byId(str_replace('#', '', $id));
-//		$state = $cmd->execCmd();
-
 		ajax::success($cmds);
 	}
 	

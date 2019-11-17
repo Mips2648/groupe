@@ -32,44 +32,46 @@ $name_on =  $groupe->getConfiguration('nameOn','ON');
 $cmds = groupe::getCmdEq(init('id'));
 sendVarToJS('infoGroupe', $cmds);
 ?>
+<div class="modalGroup">
+	<center>
+		<h3>Équipements <?php echo  $name_on ?> </h1>
+		<table border="0"  id='activeTable'> 
+			<thead>
+				<tr>
+					<th>{{Nom}}</th>
+					<?php
+					if($active == 1) {
+						echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
+					}
+					?>
+					<th>{{Dernière communication}}</th>
+				</tr>
+			</thead>	
+			<tbody></tbody>
+		</table>	
+	</center>
 
-<center>
-	<h3>Équipements <?php echo  $name_on ?> </h1>
-	<table border="0"  id='activeTable'> 
-		<thead>
-			<tr>
-				<th>{{Nom}}</th>
-				<?php
-				if($active == 1) {
-					echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
-				}
-				?>
-				<th>{{Dernière communication}}</th>
-			</tr>
-		</thead>	
-		<tbody></tbody>
-	</table>	
-</center>
 
+	<center>
+		<h3>Équipements   <?php echo  $name_off ?></h1>
+		<table border="0"  id='inactiveTable'> 
+			<thead>
+				<tr>
+					<th>{{Nom}}</th>
+					<?php
+					if($active == 1) {
+						echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
+					}
+					?>
 
-<center>
-	<h3>Équipements   <?php echo  $name_off ?></h1>
-	<table border="0"  id='inactiveTable'> 
-		<thead>
-			<tr>
-				<th>{{Nom}}</th>
-				<?php
-				if($active == 1) {
-					echo '<th>{{Commande ON}}</th><th>{{Commande OFF}}</th>';
-				}
-				?>
+					<th >{{Dernière communication}}</th>
+				</tr>
+			</thead>	
+			<tbody></tbody>
+		</table>
+	</center>
+</div>
 
-				<th >{{Dernière communication}}</th>
-			</tr>
-		</thead>	
-		<tbody></tbody>
-	</table>
-</center>
 
 <style>
 #inactiveTable td,  #activeTable td{

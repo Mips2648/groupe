@@ -71,7 +71,11 @@ class groupe extends eqLogic {
 		}
 	 }
 
-
+	public function compareCmds($a,$b) {
+		return (strtotime($a[6]) >= strtotime($b[6])) ? -1 : 1; 
+		
+	}
+	
     public function postUpdate() {
 		$statusOn = $this->getCmd(null, 'statuson');
 		if (!is_object($statusOn)) {
@@ -180,6 +184,7 @@ class groupe extends eqLogic {
 		$all = $groupe->getCmd();
 		$cmds = array();
 		$i=0;
+		$cmds = array();
 		foreach ($all as $one) {
 			if ($one->getlogicalId () == '') {
 				$id = $one->getConfiguration('state');
@@ -200,9 +205,10 @@ class groupe extends eqLogic {
 					($state == 0) ? $state = 1 : $state = 0;
 				}
 				
-				$cmds[$one->getName()] = array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off,$last_seen,$one->getID());
+				array_push($cmds,array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off,$last_seen,$one->getID(),$one->getName()));
 			}
-		}		
+		}	
+		usort($cmds, array('groupe','compareCmds'));
 		return $cmds;
 	}
 	
@@ -241,6 +247,7 @@ class groupe extends eqLogic {
 			}
 		}
 	}
+	
 	
 	public function get_info(){
 		try{

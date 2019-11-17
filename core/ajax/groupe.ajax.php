@@ -72,9 +72,11 @@ try {
 				if($one->getConfiguration('reverse') == 1) {
 					($state == 0) ? $state = 1 : $state = 0;
 				}
-				$cmds[$one->getName()] = array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off,$last_seen,$one->getID());
+				array_push($cmds,array($state,str_replace('#', '', $one->getConfiguration('ON')),str_replace('#', '', $one->getConfiguration('OFF')),$active,$name_on,$name_off,$last_seen,$one->getID(),$one->getName()));
 			}
-		}		
+		}
+		usort($cmds, array('groupe','compareCmds'));
+		
 		ajax::success($cmds);
 	}
 	

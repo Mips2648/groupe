@@ -3,21 +3,23 @@
 function readTable(infoGroupe) {
 	$("#activeTable tbody").empty();
 	$("#inactiveTable tbody").empty();
+	console.log(infoGroupe)
+	console.log(infoGroupe.length)
 	var html = "";
 	var html1 = "";
-	for (var id in infoGroupe) {
-		if (infoGroupe[id][3] == 1) {;
-			if (infoGroupe[id][0] == 0) {
-				html += "<tr class='line1'><td> " + id + "</td><td><button  name=" + id + " data-id='" + infoGroupe[id][7] +  "' data-action='on' class='btn btn-success form-control action' value='" + infoGroupe[id][1] +  "'> " + infoGroupe[id][4] +   "</button></td><td><button   data-id='" + infoGroupe[id][7] +  "' data-action='off' class='btn btn-danger form-control action' name=" + id + " value='" + infoGroupe[id][2] +  "'> " + infoGroupe[id][5] +   "</button></td><td> " + infoGroupe[id][6] +"</td></tr>";
+	for (i = 0; i < infoGroupe.length; i++) {
+		if (infoGroupe[i][3] == 1) {;
+			if (infoGroupe[i][0] == 0) {
+				html += "<tr class='line1'><td> " + infoGroupe[i][8] + "</td><td><button  name=" + infoGroupe[i][8] + " data-id='" + infoGroupe[i][7] +  "' data-action='on' class='btn btn-success form-control action' value='" + infoGroupe[i][1] +  "'> " + infoGroupe[i][4] +   "</button></td><td><button   data-id='" + infoGroupe[i][7] +  "' data-action='off' class='btn btn-danger form-control action' name=" + infoGroupe[i][8] + " value='" + infoGroupe[i][2] +  "'> " + infoGroupe[i][5] +   "</button></td><td> " + infoGroupe[i][6] +"</td></tr>";
 			} else {
-				html1 += "<tr class='line2'><td> " + id + "</td><td><button  data-id='" + infoGroupe[id][7] +  "' data-action='on' name=" + id + " class='btn btn-success form-control action' value='" + infoGroupe[id][1] +  "'> " + infoGroupe[id][4] +   " </button></td><td><button  data-id='" + infoGroupe[id][7] +  "' data-action='off' class='btn btn-danger form-control action' name=" + id + " value='" + infoGroupe[id][2] +  "'> " + infoGroupe[id][5] +   "</button></td><td> " + infoGroupe[id][6] +"</td></tr>";
+				html1 += "<tr class='line2'><td> " + infoGroupe[i][8] + "</td><td><button  data-id='" + infoGroupe[i][7] +  "' data-action='on' name=" + infoGroupe[i][8] + " class='btn btn-success form-control action' value='" + infoGroupe[i][1] +  "'> " + infoGroupe[i][4] +   " </button></td><td><button  data-id='" + infoGroupe[i][7] +  "' data-action='off' class='btn btn-danger form-control action' name=" + infoGroupe[i][8] + " value='" + infoGroupe[i][2] +  "'> " + infoGroupe[i][5] +   "</button></td><td> " + infoGroupe[i][6] +"</td></tr>";
 			}
 
 		} else {
-			if (infoGroupe[id][0] == 0) {
-				html += "<tr class='line1'><td> " + id + "</td><td> " + infoGroupe[id][6] +"</td></tr>";
+			if (infoGroupe[i][0] == 0) {
+				html += "<tr class='line1'><td> " + infoGroupe[i][8] + "</td><td> " + infoGroupe[i][6] +"</td></tr>";
 			} else {
-				html1 += "<tr class='line2'><td> " + id + "</td><td> " + infoGroupe[id][6] +"</td></tr>";
+				html1 += "<tr class='line2'><td> " + infoGroupe[i][8] + "</td><td> " + infoGroupe[i][6] +"</td></tr>";
 			}			
 		}
 	}
@@ -42,6 +44,7 @@ function readTable(infoGroupe) {
 					$('#div_alert').showAlert({message:  data.result,level: 'danger'});
 					return;
 				}
+				console.log(data)
 				readTable(data.result)
 
 			}

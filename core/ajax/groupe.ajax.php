@@ -43,7 +43,7 @@ try {
 		$groupe = $cmdEq->getEqLogic();
 		$cmdAction = cmd::byId(init('id'));
 		if (!is_object($groupe) || !is_object($cmdEq) || !is_object($cmdAction)) { 
-		 throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
+		 throw new Exception(__('Aucun equipement ne  correspond ou problème avec une commande: Il faut vérifier l\'équipement ou effacer une commande ', __FILE__) . init('action'));
 		 }
 		$cmdAction->execCmd();
 		$active = $groupe->getConfiguration('activAction');
@@ -76,7 +76,6 @@ try {
 			}
 		}
 		usort($cmds, array('groupe','compareCmds'));
-		
 		ajax::success($cmds);
 	}
 	

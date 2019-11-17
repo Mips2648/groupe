@@ -173,8 +173,7 @@ class groupe extends eqLogic {
 		$groupe = groupe::byId($_id);
 
 		if (!is_object($groupe)) { 
-
-		 throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
+		 	throw new Exception(__('Aucun equipement ne  correspond ou problème avec une commande: Il faut vérifier l\'équipement ou effacer une commande? ', __FILE__) . init('action'));
 		 }
 
 

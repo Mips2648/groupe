@@ -56,7 +56,7 @@ try {
 			if ($one->getlogicalId () == '') {
 				$id = $one->getConfiguration('state');
 				$cmd = cmd::byId(str_replace('#', '', $id));
-				if ($cmdEq->getName() == $one->getname()) {
+				if ($cmdEq->getId() == $one->getId()) {
 					if(init('id') == str_replace('#', '', $one->getConfiguration('ON'))) {
 						$state =1;
 						log::add('groupe', 'debug', 'Commande ON :' . $cmdEq->getName() );

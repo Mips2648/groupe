@@ -189,6 +189,9 @@ class groupe extends eqLogic {
 			if ($one->getlogicalId () == '') {
 				$id = $one->getConfiguration('state');
 				$cmd = cmd::byId(str_replace('#', '', $id));
+				if(!is_object($cmd)) {
+					continue;
+				}
 				$state = $cmd->execCmd();
 				$last_seen =  $cmd->getValueDate();
 				$status = $groupe->getCmd(null, 'last');
@@ -251,6 +254,7 @@ class groupe extends eqLogic {
 	
 	public function get_info(){
 		try{
+			log::add('groupe','erreur','get_info' );
 			$infos = array();
 			$i=0;
 			$j=0;
@@ -262,12 +266,12 @@ class groupe extends eqLogic {
 					$z++;
 					$cmd = cmd::byId(str_replace('#', '', $trigger->getConfiguration('state')));
 					if(!is_object($cmd)) {
-						log::add('groupe','debug','cmd non trouvé' . $trigger->getName() );
+						log::add('groupe','erreur','cmd non trouvé' . $trigger->getName() );
 						continue;
 					}
 
 					$val = $cmd->execCmd();
-					if($trigger->getConfiguration('reverse') == 0) {
+					if($trigger->getConfiguration('reverse',0)) {
 						($val == 0) ? $j++ : $i++;
 					} else {
 						($val == 0) ? $i++ : $j++;

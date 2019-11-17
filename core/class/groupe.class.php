@@ -173,7 +173,8 @@ class groupe extends eqLogic {
 		$groupe = groupe::byId($_id);
 
 		if (!is_object($groupe)) { 
-		 	throw new Exception(__('Aucun equipement ne  correspond ou problème avec une commande: Il faut vérifier l\'équipement ou effacer une commande? ', __FILE__) . init('action'));
+
+		 throw new Exception(__('Aucun equipement ne  correspond : Il faut (re)-enregistrer l\'équipement ', __FILE__) . init('action'));
 		 }
 
 
@@ -190,6 +191,7 @@ class groupe extends eqLogic {
 				$cmd = cmd::byId(str_replace('#', '', $id));
 				if(!is_object($cmd)) {
 					continue;
+					
 				}
 				$state = $cmd->execCmd();
 				$last_seen =  $cmd->getValueDate();
@@ -253,7 +255,6 @@ class groupe extends eqLogic {
 	
 	public function get_info(){
 		try{
-			log::add('groupe','erreur','get_info' );
 			$infos = array();
 			$i=0;
 			$j=0;
@@ -265,12 +266,12 @@ class groupe extends eqLogic {
 					$z++;
 					$cmd = cmd::byId(str_replace('#', '', $trigger->getConfiguration('state')));
 					if(!is_object($cmd)) {
-						log::add('groupe','erreur','cmd non trouvé' . $trigger->getName() );
+						log::add('groupe','debug','cmd non trouvé' . $trigger->getName() );
 						continue;
 					}
 
 					$val = $cmd->execCmd();
-					if($trigger->getConfiguration('reverse',0)) {
+					if($trigger->getConfiguration('reverse') == 0) {
 						($val == 0) ? $j++ : $i++;
 					} else {
 						($val == 0) ? $i++ : $j++;

@@ -1,9 +1,11 @@
 XX-11-2019
 ===
 
-- Boutom dupliquer pour chaque équipement
+- Correction de l'affichage du nom/objet v3/v4
+- Bouton dupliquer pour chaque équipement
 - Suppression de la roue crantée
-- Amélioration de la modale (mise en forme,ajout de la date de la dernière communication)
+- Amélioration de la modale (mise en forme,ajout de la date de la dernière communication triée par date descendante)
+- Confirmation compatibilité v4/buster
 
 XX-08-2019
 ===

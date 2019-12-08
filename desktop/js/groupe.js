@@ -143,7 +143,7 @@ function addCmdToTable(_cmd) {
         _cmd.configuration = {};
     }
 	
-	if (_cmd.name == 'Nombre On' || _cmd.name == 'Nombre Off' || _cmd.name == 'Etat' || _cmd.name == 'Dernier déclencheur' || _cmd.name == 'All on' || _cmd.name == 'All off' ) {
+	if (_cmd.logicalId == 'statuson' || _cmd.logicalId == 'statusoff' || _cmd.logicalId == 'status' || _cmd.logicalId == 'last' || _cmd.logicalId == 'allon' || _cmd.logicalId == 'alloff' ) {
 		var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
 		tr += '<td>';
 		tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
@@ -225,9 +225,3 @@ function addCmdToTable(_cmd) {
 
 //			
 }
-
-
-
-
-
-
